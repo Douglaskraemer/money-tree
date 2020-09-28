@@ -1,0 +1,85 @@
+<!-- Navigation
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'cadastrar-despesa' %}">Cadastro de Despesas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'listar-despesa' %}">Despesas Cadastradas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'users-login' %}">Entrar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="{% url 'logout' %}">Sair</a>
+    </div>
+</nav> -->
+
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'img/pngegg.png' %}" width="80" height="70" alt="logo">
+            MoneyTree</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">
+                        Inicio
+                        <span class="sr-only">(current)</span></a>
+                </li>
+
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{% url 'index' %}" id="navbarDropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cadastros
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'cadastrar-despesa' %}">Cadastrar despesas</a>
+                        <a class="dropdown-item" href="{% url 'cadastrar-categoria' %}">Cadastrar categoria</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listar-despesa' %}">Ver despesas</a>
+                </li>
+
+                <!--Menu dropdown-->
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="{% url 'index' %}" id="navbarDropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ request.user }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Meus dados</a>
+                        <a class="dropdown-item" href="#">Alterar senha</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'user-logout' %}">Sair</a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'registrar' %}">Registrar</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'users-login' %}">Entrar</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

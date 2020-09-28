@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{%block titulo%}{{ despesa.descricao }} | {% endblock %}
+
+{%block conteudo%}
+<h3 class="mt-5">Excluir despesa</h3>
+<p class="lead">
+    Confirme para excluir a despesa definitivamente.
+</p>
+
+<hr>
+
+<form action="" method="post">
+
+    <p>
+        Deseja excluir o registro: <b>{{ object }}</b> ?
+    </p>
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a href="{% url 'listar-despesa' %}" class="btn btn-warning">Voltar</a>
+
+</form>
+{%endblock%}

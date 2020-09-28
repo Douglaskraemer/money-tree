@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block conteudo %}
+
+<h3 class="mt-3">Lista de campos registrados</h3>
+
+<a href="{% url 'cadastrar-despesa' %}" class="btn btn-primary">Adicionar categoria</a>
+
+<hr>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>Opções</th>
+        </tr>
+
+        {% for categoria in object_list %}
+        <tr>
+            <td>{{categoria.nome}}</td>
+            <td>
+                <a href="{% url 'editar-categoria' categoria.pk %}" class="btn btn-warning btn-sm"
+                    title="Editar">Editar</a>
+                <a href="{% url 'excluir-categoria' categoria.pk %}" class="btn btn-danger btn-sm"
+                    title="Excluir">Excluir</a>
+
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum campo registrado</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+{% endblock %}
