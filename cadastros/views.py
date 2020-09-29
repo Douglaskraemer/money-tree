@@ -127,5 +127,6 @@ class DespesaList(LoginRequiredMixin, ListView):
     template_name = "cadastros/listas/despesa.html"
 
     def get_queryset(self):
-        self.object_list = Despesa.objects.filter(usuario=self.request.user)
+        self.object_list = Despesa.objects.filter(
+            usuario=self.request.user).order_by('vencimento')
         return self.object_list
